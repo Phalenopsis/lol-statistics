@@ -41,19 +41,15 @@ public class Ranking {
         return list;
     }
 
-    public void setMatchesToPlay(ArrayList<Match> matchList) {
-        this.matchList = matchList;
-    }
-
     public void playNextMatch(Score score) {
         Match match = matchList.removeFirst();
-        Team team1 = match.getTeam1();
-        Team team2 = match.getTeam2();
-        Team team1AfterMatch = teams.get(team1.getName()).computeScore(team2.getName(), score.scoreTeam1(), score.scoreTeam2());
-        Team team2AfterMatch = teams.get(team2.getName()).computeScore(team1.getName(), score.scoreTeam2(), score.scoreTeam1());
+        String team1 = match.getTeam1();
+        String team2 = match.getTeam2();
+        Team team1AfterMatch = teams.get(team1).computeScore(team2, score.scoreTeam1(), score.scoreTeam2());
+        Team team2AfterMatch = teams.get(team2).computeScore(team1, score.scoreTeam2(), score.scoreTeam1());
 
-        teams.put(team1.getName(), team1AfterMatch);
-        teams.put(team2.getName(), team2AfterMatch);
+        teams.put(team1, team1AfterMatch);
+        teams.put(team2, team2AfterMatch);
     }
 
     private void setTeam(List<Team> teamList) {

@@ -21,7 +21,7 @@ public class FinalTest {
         Team mcon = new Team(mconName);
         Team snsh = new Team(snshName);
         List<Team> teamList = List.of(mcon, snsh);
-        Match match1 = new Match(mcon, snsh);
+        Match match1 = new Match(mconName, snshName);
         ArrayList<Match> matchList = new ArrayList<>(List.of(match1));
 
         ranking = new Ranking(teamList, matchList);
@@ -48,12 +48,12 @@ public class FinalTest {
             Team arse = new Team(arseName);
 
             List<Team> teamList = List.of(ouat, arse, mcon, snsh);
-            Match match1 = new Match(mcon, snsh);
-            Match match2 = new Match(ouat, arse);
-            Match match3 = new Match(mcon, ouat);
-            Match match4 = new Match(snsh, arse);
-            Match match5 = new Match(mcon, arse);
-            Match match6 = new Match(snsh, ouat);
+            Match match1 = new Match(mconName, snshName);
+            Match match2 = new Match(ouatName, arseName);
+            Match match3 = new Match(mconName, ouatName);
+            Match match4 = new Match(snshName, arseName);
+            Match match5 = new Match(mconName, arseName);
+            Match match6 = new Match(snshName, ouatName);
             ArrayList<Match> matches = new ArrayList<>(List.of(match1, match2, match3, match4, match5, match6));
             ranking = new Ranking(teamList, matches);
 
@@ -77,6 +77,4 @@ public class FinalTest {
             Assertions.assertEquals(expected, result);
         }
     }
-
-
 }

@@ -12,17 +12,26 @@ import java.util.List;
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 public class Main {
     public static void main(String[] args) {
+        String znt = "ZennIt";     //TIP Press <shortcut actionId="ShowIntentionActions"/> with your caret at the highlighted text
+        String mcon = "mCon esports";
+        String snsh = "Senshi eports";
+        String aoma = "A One Man Army";
+        String myth = "Myth Esport";
+        String ouat = "Once Upon A Team";
+        String jmgg = "Jörmungang";
+        String ara = "Aurora";
 
-        Team znt = new Team("ZennIt");     //TIP Press <shortcut actionId="ShowIntentionActions"/> with your caret at the highlighted text
-        Team mcon = new Team("mCon esports");
-        Team snsh = new Team("Senshi eports");
-        Team aoma = new Team("A One Man Army");
-        Team myth = new Team("Myth Esport");
-        Team ouat = new Team("Once Upon A Team");
-        Team jmgg = new Team("Jörmungang");
-        Team ara = new Team("Aurora");
 
-        List<Team> teams = List.of(znt, mcon, snsh, aoma, myth, ouat, jmgg, ara);
+        Team zntTeam = new Team("ZennIt");     //TIP Press <shortcut actionId="ShowIntentionActions"/> with your caret at the highlighted text
+        Team mconTeam = new Team("mCon esports");
+        Team snshTeam = new Team("Senshi eports");
+        Team aomaTeam = new Team("A One Man Army");
+        Team mythTeam = new Team("Myth Esport");
+        Team ouatTeam = new Team("Once Upon A Team");
+        Team jmggTeam = new Team("Jörmungang");
+        Team araTeam = new Team("Aurora");
+
+        List<Team> teams = List.of(zntTeam, mconTeam, snshTeam, aomaTeam, mythTeam, ouatTeam, jmggTeam, araTeam);
 
         Match matchToDoW1_1 = new Match(myth, snsh);
         Match matchToDoW1_2 = new Match(ouat, mcon);

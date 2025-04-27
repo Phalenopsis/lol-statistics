@@ -3,10 +3,10 @@ package org.aaron.domain.match;
 import org.aaron.domain.team.Team;
 
 public class Match {
-    private final Team team1;
-    private final Team team2;
+    private final String team1;
+    private final String team2;
 
-    public Match(Team team1, Team team2) {
+    public Match(String team1, String team2) {
         this.team1 = team1;
         this.team2 = team2;
     }
@@ -16,11 +16,11 @@ public class Match {
         team2 = match.team2;
     }
 
-    public Team getTeam2() {
+    public String getTeam2() {
         return team2;
     }
 
-    public Team getTeam1() {
+    public String getTeam1() {
         return team1;
     }
 }

@@ -3,11 +3,11 @@ package org.aaron.domain.ranking;
 import java.util.*;
 
 public class FinalRank {
-    int position;
-    ArrayList<String> teams = new ArrayList<>();
-    Map<String, Double> map = new HashMap<>();
+    private final int position;
+    private final ArrayList<String> teams = new ArrayList<>();
+    private final Map<String, Double> map = new HashMap<>();
 
-    FinalRank (int position) {
+    FinalRank(int position) {
         this.position = position;
     }
 

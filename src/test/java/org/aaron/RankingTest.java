@@ -3,7 +3,7 @@ package org.aaron;
 import org.aaron.domain.match.Match;
 import org.aaron.domain.match.Score;
 import org.aaron.domain.ranking.Ranking;
-import org.aaron.domain.team.PlacedTeam;
+import org.aaron.domain.team.RankedTeam;
 import org.aaron.domain.team.Team;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -96,7 +96,7 @@ class RankingTest {
     }
 
     @Nested
-    class testPlacedTeamWith4TeamsAnd6Matches {
+    class testRankedTeamWith4TeamsAnd6Matches {
         String mconName = "mCon esports";
         String snshName = "Senshi eports";
         String ouatName = "Once upon a time";
@@ -146,8 +146,8 @@ class RankingTest {
 
         @Test
         void verifyRankingIsOrdered() {
-            List<PlacedTeam> teams = ranking.getPlacedTeams();
-            for(PlacedTeam team: teams) {
+            List<RankedTeam> teams = ranking.getPlacedTeams();
+            for(RankedTeam team: teams) {
                 if(team.getName().equals(mconName)) {
                     Assertions.assertEquals(1, team.getRank());
                 }

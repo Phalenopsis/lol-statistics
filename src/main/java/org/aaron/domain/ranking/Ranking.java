@@ -3,7 +3,7 @@ package org.aaron.domain.ranking;
 import org.aaron.domain.match.Match;
 import org.aaron.domain.match.Score;
 import org.aaron.domain.prevision.Node;
-import org.aaron.domain.team.PlacedTeam;
+import org.aaron.domain.team.RankedTeam;
 import org.aaron.domain.team.Team;
 
 import java.util.*;
@@ -80,9 +80,9 @@ public class Ranking {
         return unorderedList.stream().sorted().toList();
     }
 
-    public List<PlacedTeam> getPlacedTeams() {
+    public List<RankedTeam> getPlacedTeams() {
         List<Team> orderedList = getOrderedList();
-        List<PlacedTeam> teamList = new ArrayList<>();
+        List<RankedTeam> teamList = new ArrayList<>();
         int actualRank = 0;
         int potentialRank = 0;
         Team previousTeam = new Team("error");
@@ -91,13 +91,13 @@ public class Ranking {
             if(actualRank == 0) {
                 actualRank = 1;
                 potentialRank = 1;
-                teamList.add(new PlacedTeam(team, actualRank));
+                teamList.add(new RankedTeam(team, actualRank));
             } else {
                 if(team.compareTo(previousTeam) == 0) {
-                    teamList.add(new PlacedTeam(team, actualRank));
+                    teamList.add(new RankedTeam(team, actualRank));
                 } else {
                     actualRank = potentialRank;
-                    teamList.add(new PlacedTeam(team, actualRank));
+                    teamList.add(new RankedTeam(team, actualRank));
                 }
             }
             previousTeam = team;

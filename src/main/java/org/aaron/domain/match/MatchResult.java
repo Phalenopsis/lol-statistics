@@ -1,8 +1,8 @@
 package org.aaron.domain.match;
 
 public class MatchResult {
-    private String oppositeTeam;
-    private Result result;
+    private final String oppositeTeam;
+    private final Result result;
 
     public MatchResult(String oppositeTeam, Result result) {
         this.oppositeTeam = oppositeTeam;

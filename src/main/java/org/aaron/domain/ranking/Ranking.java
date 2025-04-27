@@ -49,8 +49,8 @@ public class Ranking {
         Match match = matchList.removeFirst();
         Team team1 = match.getTeam1();
         Team team2 = match.getTeam2();
-        Team team1AfterMatch = teams.get(team1.getName()).computeScore(team2.getName(), score.getScoreTeam1(), score.getScoreTeam2());
-        Team team2AfterMatch = teams.get(team2.getName()).computeScore(team1.getName(), score.getScoreTeam2(), score.getScoreTeam1());
+        Team team1AfterMatch = teams.get(team1.getName()).computeScore(team2.getName(), score.scoreTeam1(), score.scoreTeam2());
+        Team team2AfterMatch = teams.get(team2.getName()).computeScore(team1.getName(), score.scoreTeam2(), score.scoreTeam1());
 
         teams.put(team1.getName(), team1AfterMatch);
         teams.put(team2.getName(), team2AfterMatch);

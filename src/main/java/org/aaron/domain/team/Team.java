@@ -21,12 +21,6 @@ public class Team implements Comparable<Team>{
         this.games = new Games();
     }
 
-    public Team(String name, Series series, Games games) {
-        this.series = series;
-        this.games = games;
-        this.name = name;
-    }
-
     public Team(String name, Series series, Games games, List<MatchResult> matchResultList) {
         this.series = series;
         this.games = games;

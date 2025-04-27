@@ -42,7 +42,6 @@ public class Node {
         } else {
             getAncestorFinalRanking().addList(ranking.getPlacedTeams());
         }
-
     }
 
     private FinalRanking getAncestorFinalRanking() {

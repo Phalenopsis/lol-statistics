@@ -8,8 +8,8 @@ import java.util.List;
 import java.util.Map;
 
 public class FinalRanking {
-    private ArrayList<List<RankedTeam>> finalList = new ArrayList<>();
-    private Map<Integer, FinalRank> finalMap = new HashMap<>();
+    private final ArrayList<List<RankedTeam>> finalList = new ArrayList<>();
+    private final Map<Integer, FinalRank> finalMap = new HashMap<>();
 
     private final int numberOfTeams;
 

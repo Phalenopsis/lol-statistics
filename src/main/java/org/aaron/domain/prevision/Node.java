@@ -28,7 +28,6 @@ public class Node {
 
     public Node(Ranking ranking, Score score, Node node) {
         counter += 1;
-        System.out.println(counter);
         this.ranking = new Ranking(ranking);
         parent = node;
         this.ranking.playNextMatch(score);

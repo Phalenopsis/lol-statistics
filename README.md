@@ -26,3 +26,26 @@ Les matchs sont en deux manches gagnantes. Pas d'égalité possible.
 Pour déterminer le classement des équipes, on regarde en premier lieu leur nombre de match gagnés. Ensuite, c'est le 
 goalaverage (différence entre manches gagnées et perdues), puis le nombre de manches gagnées et enfin le resultat de la
 confrontation directe entre les deux équipes.
+
+## Fonctionnement
+Les prévisions sont basées sur un arbre de possibilités.
+Chaque match restant à jouer est simulé avec les résultats possibles (2-0, 2-1, 1-2, 0-2).
+Pour chaque résultats, les matchs suivants sont simulés de la même manière.
+
+                                                        Match AD
+                                                            |
+                ________________________________________________________________________________________
+                |                               |                           |                           |
+               2-0                             2-1                         1-2                         0-2
+                |                               |                           |                           |
+            Match BC                        Match BC                    Match BC                     Match BC
+                |                               |                           |                           |
+     ______________________           ______________________      ______________________      ______________________
+     |      |      |      |           |      |      |      |      |      |      |      |      |      |      |      |
+    2-0    2-1    1-2    0-2         2-0    2-1    1-2    0-2    2-0    2-1    1-2    0-2    2-0    2-1    1-2    0-2
+
+Une fois les matchs simulés, on calcule tous les classements et on regarde à quelle position fini l'équipe.
+
+## Problème :
+Ce fonctionnement est extrèmement gourmand. Pour un championnat de 8 équipes, il n'est possible de générer les 
+statistiques de prévisions que pour les deux dernières journées, sinon cela 

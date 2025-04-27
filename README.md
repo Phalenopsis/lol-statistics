@@ -48,4 +48,7 @@ Une fois les matchs simulés, on calcule tous les classements et on regarde à q
 
 ## Problème :
 Ce fonctionnement est extrèmement gourmand. Pour un championnat de 8 équipes, il n'est possible de générer les 
-statistiques de prévisions que pour les deux dernières journées, sinon cela 
+statistiques de prévisions que pour les deux dernières journées, sinon cela provoque :
+```
+Exception in thread "main" java.lang.OutOfMemoryError: Java heap space: failed reallocation of scalar replaced objects
+```

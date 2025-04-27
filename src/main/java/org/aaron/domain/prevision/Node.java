@@ -1,7 +1,7 @@
 package org.aaron.domain.prevision;
 
 import org.aaron.domain.ranking.FinalRanking;
-import org.aaron.domain.ranking.Ranking;
+import org.aaron.domain.ranking.Championship;
 import org.aaron.domain.match.Score;
 
 import java.util.ArrayList;
@@ -19,33 +19,33 @@ public class Node {
 
     List<Node> children = new ArrayList<>();
 
-    Ranking ranking;
+    Championship championship;
 
-    public Node(Ranking pRanking) {
-        ranking = pRanking;
+    public Node(Championship pChampionship) {
+        championship = pChampionship;
         processChildren();
     }
 
-    public Node(Ranking ranking, Score score, Node node) {
+    public Node(Championship championship, Score score, Node node) {
         counter += 1;
-        this.ranking = new Ranking(ranking);
+        this.championship = new Championship(championship);
         parent = node;
-        this.ranking.playNextMatch(score);
+        this.championship.playNextMatch(score);
         processChildren();
     }
 
     private void processChildren() {
-        if(!(Objects.isNull(ranking.getMatchList())) && !ranking.getMatchList().isEmpty()) {
+        if(!(Objects.isNull(championship.getMatchList())) && !championship.getMatchList().isEmpty()) {
             for(Score possibleScore: POSSIBLE_SCORES) {
-                Node child = new Node(ranking, possibleScore , this);
+                Node child = new Node(championship, possibleScore , this);
             }
         } else {
-            getAncestorFinalRanking().addList(ranking.getPlacedTeams());
+            getAncestorFinalRanking().addList(championship.getPlacedTeams());
         }
     }
 
     private FinalRanking getAncestorFinalRanking() {
-        if(Objects.isNull(parent)) return ranking.getFinalRanking();
+        if(Objects.isNull(parent)) return championship.getFinalRanking();
         return parent.getAncestorFinalRanking();
     }
 }

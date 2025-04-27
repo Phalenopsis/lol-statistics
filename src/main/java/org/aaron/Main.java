@@ -2,7 +2,7 @@ package org.aaron;
 
 import org.aaron.domain.match.Match;
 import org.aaron.domain.match.Score;
-import org.aaron.domain.ranking.Ranking;
+import org.aaron.domain.ranking.Championship;
 import org.aaron.domain.team.Team;
 
 import java.util.ArrayList;
@@ -82,32 +82,32 @@ public class Main {
         matchList.addAll(matchList3);
         matchList.addAll(matchList4);
 
-        Ranking ranking = new Ranking(teams, matchList);
+        Championship championship = new Championship(teams, matchList);
 
-        ranking.playNextMatch(new Score(2, 1));
-        ranking.playNextMatch(new Score(1, 2));
-        ranking.playNextMatch(new Score(2, 0));
-        ranking.playNextMatch(new Score(2, 0));
+        championship.playNextMatch(new Score(2, 1));
+        championship.playNextMatch(new Score(1, 2));
+        championship.playNextMatch(new Score(2, 0));
+        championship.playNextMatch(new Score(2, 0));
 
-        ranking.playNextMatch(new Score(2, 1));
-        ranking.playNextMatch(new Score(1, 2));
-        ranking.playNextMatch(new Score(2, 1));
-        ranking.playNextMatch(new Score(1, 2));
+        championship.playNextMatch(new Score(2, 1));
+        championship.playNextMatch(new Score(1, 2));
+        championship.playNextMatch(new Score(2, 1));
+        championship.playNextMatch(new Score(1, 2));
 
-        ranking.playNextMatch(new Score(2, 1));
-        ranking.playNextMatch(new Score(2, 1));
-        ranking.playNextMatch(new Score(0, 2));
-        ranking.playNextMatch(new Score(2, 0));
+        championship.playNextMatch(new Score(2, 1));
+        championship.playNextMatch(new Score(2, 1));
+        championship.playNextMatch(new Score(0, 2));
+        championship.playNextMatch(new Score(2, 0));
 
-        ranking.playNextMatch(new Score(2, 0));
-        ranking.playNextMatch(new Score(1, 2));
-        ranking.playNextMatch(new Score(1, 2));
-        ranking.playNextMatch(new Score(2, 0));
+        championship.playNextMatch(new Score(2, 0));
+        championship.playNextMatch(new Score(1, 2));
+        championship.playNextMatch(new Score(1, 2));
+        championship.playNextMatch(new Score(2, 0));
 
-        ranking.playNextMatch(new Score(2, 0));
-        ranking.playNextMatch(new Score(2, 1));
-        ranking.playNextMatch(new Score(0, 2));
-        ranking.playNextMatch(new Score(0, 2));
+        championship.playNextMatch(new Score(2, 0));
+        championship.playNextMatch(new Score(2, 1));
+        championship.playNextMatch(new Score(0, 2));
+        championship.playNextMatch(new Score(0, 2));
 
         /*
         List<PlacedTeam> list = ranking.getPlacedTeams();
@@ -116,7 +116,7 @@ public class Main {
         }
          */
 
-        ranking.compute();
-        System.out.println(ranking.giveResults());
+        championship.compute();
+        System.out.println(championship.giveResults());
     }
 }

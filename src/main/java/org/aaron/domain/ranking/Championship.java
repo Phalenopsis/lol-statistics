@@ -8,21 +8,21 @@ import org.aaron.domain.team.Team;
 
 import java.util.*;
 
-public class Ranking {
+public class Championship {
     Map<String, Team> teams = new HashMap<>();
     ArrayList<Match> matchList;
     FinalRanking finalRanking;
 
-    public Ranking(List<Team> teamList, ArrayList<Match> matchList) {
+    public Championship(List<Team> teamList, ArrayList<Match> matchList) {
         setTeam(teamList);
         this.matchList = matchList;
         this.finalRanking = new FinalRanking(teamList.size());
     }
 
-    public Ranking(Ranking ranking) {
-        teams = duplicate(ranking.teams);
-        matchList = duplicate(ranking.matchList);
-        this.finalRanking = ranking.finalRanking;
+    public Championship(Championship championship) {
+        teams = duplicate(championship.teams);
+        matchList = duplicate(championship.matchList);
+        this.finalRanking = championship.finalRanking;
     }
 
     private Map<String, Team> duplicate(Map<String, Team> teamsMap) {

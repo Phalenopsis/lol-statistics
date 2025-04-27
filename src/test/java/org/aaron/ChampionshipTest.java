@@ -2,7 +2,7 @@ package org.aaron;
 
 import org.aaron.domain.match.Match;
 import org.aaron.domain.match.Score;
-import org.aaron.domain.ranking.Ranking;
+import org.aaron.domain.ranking.Championship;
 import org.aaron.domain.team.RankedTeam;
 import org.aaron.domain.team.Team;
 import org.junit.jupiter.api.Assertions;
@@ -13,7 +13,7 @@ import org.junit.jupiter.api.Test;
 import java.util.ArrayList;
 import java.util.List;
 
-class RankingTest {
+class ChampionshipTest {
 
     @Test
     void playNextMatch_2TeamsScore2vs1_SeriesAndGamesAreUpdated() {
@@ -25,12 +25,12 @@ class RankingTest {
         List<Team> teamList = List.of(mcon, snsh);
         Match match = new Match(mconName, snshName);
         ArrayList<Match> matches = new ArrayList<>(List.of(match));
-        Ranking ranking = new Ranking(teamList, matches);
+        Championship championship = new Championship(teamList, matches);
 
-        ranking.playNextMatch(new Score(2, 1));
+        championship.playNextMatch(new Score(2, 1));
 
-        Team mconAfterMatch = ranking.getTeam(mcon.getName());
-        Team snshAfterMatch = ranking.getTeam(snsh.getName());
+        Team mconAfterMatch = championship.getTeam(mcon.getName());
+        Team snshAfterMatch = championship.getTeam(snsh.getName());
 
         Assertions.assertEquals("1 - 0", mconAfterMatch.getSeriesInString());
         Assertions.assertEquals("2 - 1", mconAfterMatch.getGamesInString());
@@ -45,7 +45,7 @@ class RankingTest {
         String snshName = "Senshi eports";
         String ouatName = "Once upon a time";
         String arseName = "Arsenal";
-        Ranking ranking;
+        Championship championship;
 
         @BeforeEach
         void setUp() {
@@ -62,14 +62,14 @@ class RankingTest {
             Match match5 = new Match(mconName, arseName);
             Match match6 = new Match(snshName, ouatName);
             ArrayList<Match> matches = new ArrayList<>(List.of(match1, match2, match3, match4, match5, match6));
-            ranking = new Ranking(teamList, matches);
+            championship = new Championship(teamList, matches);
 
-            ranking.playNextMatch(new Score(2, 1)); // mcon 2-1 snsh
-            ranking.playNextMatch(new Score(2, 1)); // ouat 2-1 arse
-            ranking.playNextMatch(new Score(2, 1)); // mcon 2-1 ouat
-            ranking.playNextMatch(new Score(2, 0)); // snsh 2-0 arse
-            ranking.playNextMatch(new Score(2, 0)); // mcon 2-0 arse
-            ranking.playNextMatch(new Score(2, 0)); // snsh 2-0 ouat
+            championship.playNextMatch(new Score(2, 1)); // mcon 2-1 snsh
+            championship.playNextMatch(new Score(2, 1)); // ouat 2-1 arse
+            championship.playNextMatch(new Score(2, 1)); // mcon 2-1 ouat
+            championship.playNextMatch(new Score(2, 0)); // snsh 2-0 arse
+            championship.playNextMatch(new Score(2, 0)); // mcon 2-0 arse
+            championship.playNextMatch(new Score(2, 0)); // snsh 2-0 ouat
             // mcon     3-0     6-2
             // snsh     2-1     5-2
             // ouat     1-2     3-5
@@ -78,8 +78,8 @@ class RankingTest {
 
         @Test
         void verifySeriesAndGameAfterMatches() {
-            Team mconAfterMatch = ranking.getTeam(mconName);
-            Team snshAfterMatch = ranking.getTeam(snshName);
+            Team mconAfterMatch = championship.getTeam(mconName);
+            Team snshAfterMatch = championship.getTeam(snshName);
 
             Assertions.assertEquals("3 - 0", mconAfterMatch.getSeriesInString());
             Assertions.assertEquals("6 - 2", mconAfterMatch.getGamesInString());
@@ -90,7 +90,7 @@ class RankingTest {
 
         @Test
         void verifyRankingIsOrdered() {
-            List<Team> teams = ranking.getOrderedList();
+            List<Team> teams = championship.getOrderedList();
             Assertions.assertEquals(mconName, teams.getFirst().getName());
             Assertions.assertEquals(snshName, teams.get(1).getName());
             Assertions.assertEquals(ouatName, teams.get(2).getName());
@@ -104,7 +104,7 @@ class RankingTest {
         String snshName = "Senshi eports";
         String ouatName = "Once upon a time";
         String arseName = "Arsenal";
-        Ranking ranking;
+        Championship championship;
 
         @BeforeEach
         void setUp() {
@@ -121,14 +121,14 @@ class RankingTest {
             Match match5 = new Match(mconName, arseName);
             Match match6 = new Match(snshName, ouatName);
             ArrayList<Match> matches = new ArrayList<>(List.of(match1, match2, match3, match4, match5, match6));
-            ranking = new Ranking(teamList, matches);
+            championship = new Championship(teamList, matches);
 
-            ranking.playNextMatch(new Score(2, 0)); // mcon 2-0 snsh
-            ranking.playNextMatch(new Score(2, 0)); // ouat 2-0 arse
-            ranking.playNextMatch(new Score(2, 0)); // mcon 2-0 ouat
-            ranking.playNextMatch(new Score(2, 0)); // snsh 2-0 arse
-            ranking.playNextMatch(new Score(0, 2)); // mcon 0-2 arse
-            ranking.playNextMatch(new Score(0, 2)); // snsh 0-2 ouat
+            championship.playNextMatch(new Score(2, 0)); // mcon 2-0 snsh
+            championship.playNextMatch(new Score(2, 0)); // ouat 2-0 arse
+            championship.playNextMatch(new Score(2, 0)); // mcon 2-0 ouat
+            championship.playNextMatch(new Score(2, 0)); // snsh 2-0 arse
+            championship.playNextMatch(new Score(0, 2)); // mcon 0-2 arse
+            championship.playNextMatch(new Score(0, 2)); // snsh 0-2 ouat
             // mcon     2-1     4-2
             // snsh     1-2     2-4
             // ouat     2-1     4-2
@@ -137,8 +137,8 @@ class RankingTest {
 
         @Test
         void verifySeriesAndGameAfterMatches() {
-            Team mconAfterMatch = ranking.getTeam(mconName);
-            Team snshAfterMatch = ranking.getTeam(snshName);
+            Team mconAfterMatch = championship.getTeam(mconName);
+            Team snshAfterMatch = championship.getTeam(snshName);
 
             Assertions.assertEquals("2 - 1", mconAfterMatch.getSeriesInString());
             Assertions.assertEquals("4 - 2", mconAfterMatch.getGamesInString());
@@ -149,7 +149,7 @@ class RankingTest {
 
         @Test
         void verifyRankingIsOrdered() {
-            List<RankedTeam> teams = ranking.getPlacedTeams();
+            List<RankedTeam> teams = championship.getPlacedTeams();
             for(RankedTeam team: teams) {
                 if(team.getName().equals(mconName)) {
                     Assertions.assertEquals(1, team.getRank());

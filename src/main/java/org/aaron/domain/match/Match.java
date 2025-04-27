@@ -1,7 +1,5 @@
 package org.aaron.domain.match;
 
-import org.aaron.domain.team.Team;
-
 public class Match {
     private final String team1;
     private final String team2;

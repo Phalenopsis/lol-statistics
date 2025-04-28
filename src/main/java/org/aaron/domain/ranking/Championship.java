@@ -103,8 +103,10 @@ public class Championship {
     }
 
     public void compute() {
+        System.out.println("KB: " + (double) (Runtime.getRuntime().totalMemory() - Runtime.getRuntime().freeMemory()) / 1024);
         Node node = new Node(this);
         finalRanking.compute();
+        System.out.println("KB: " + (double) (Runtime.getRuntime().totalMemory() - Runtime.getRuntime().freeMemory()) / 1024);
     }
 
     public String giveResults() {

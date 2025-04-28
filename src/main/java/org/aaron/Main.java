@@ -115,8 +115,11 @@ public class Main {
             System.out.println(team.getName() + " " + team.getSeries() + " " + team.getGames());
         }
          */
-
+        long start = System.currentTimeMillis();
         championship.compute();
+        long finish = System.currentTimeMillis();
+        long timeElapsed = finish - start;
+        System.out.println("computed in : " + timeElapsed + " ms");
         System.out.println(championship.giveResults());
     }
 }

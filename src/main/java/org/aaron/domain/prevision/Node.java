@@ -9,25 +9,27 @@ import java.util.List;
 import java.util.Objects;
 
 public class Node {
-    private static int counter = 0;
     private static final List<Score> POSSIBLE_SCORES = List.of(
             new Score(2, 0),
             new Score(2, 1),
             new Score(1, 2),
             new Score(0, 2));
-    Node parent;
 
-    List<Node> children = new ArrayList<>();
+    private static boolean isDone = false;
+
+    Node parent;
+    int depth;
 
     Championship championship;
 
     public Node(Championship pChampionship) {
         championship = pChampionship;
         processChildren();
+        depth = 0;
     }
 
     public Node(Championship championship, Score score, Node node) {
-        counter += 1;
+        depth = node.depth + 1;
         this.championship = new Championship(championship);
         parent = node;
         this.championship.playNextMatch(score);
@@ -40,6 +42,10 @@ public class Node {
                 Node child = new Node(championship, possibleScore , this);
             }
         } else {
+            if(!isDone) {
+                System.out.println("Deepth : " + depth);
+                isDone = true;
+            }
             getAncestorFinalRanking().addList(championship.getPlacedTeams());
         }
     }

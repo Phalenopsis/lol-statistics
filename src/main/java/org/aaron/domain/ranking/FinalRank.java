@@ -1,7 +1,5 @@
 package org.aaron.domain.ranking;
 
-import org.aaron.domain.team.Team;
-
 import java.util.*;
 
 public class FinalRank {

@@ -4,7 +4,7 @@ import java.util.*;
 
 public class FinalRank {
     private final int position;
-    private final ArrayList<String> teams = new ArrayList<>();
+    private final Map<String, Integer> teamCounter = new HashMap<>();
     private final Map<String, Double> map = new HashMap<>();
 
     FinalRank(int position) {
@@ -12,29 +12,28 @@ public class FinalRank {
     }
 
     public void addTeam(String teamName) {
-        teams.add(teamName);
+        if(Objects.nonNull(teamCounter.get(teamName))) {
+            teamCounter.put(teamName, teamCounter.get(teamName) + 1);
+        } else {
+            teamCounter.put(teamName, 1);
+        }
     }
 
     public void compute() {
-        Set<String> set = new HashSet<>(teams);
-        for(String team: set) {
-            extractPercentageForTeam(team);
+        int numberOfTeams = getNumberOfTeamsApparitions();
+        for(String team: teamCounter.keySet()) {
+            extractPercentageForTeam(team, numberOfTeams);
         }
     }
 
-    private void extractPercentageForTeam(String team) {
-        int numberOfTeams = teams.size();
-        int numberOfApparitions = countApparitionsForTeam(team);
-        double percentage = getChancesToFinishAtThisPosition(numberOfApparitions, numberOfTeams);
+    private int getNumberOfTeamsApparitions() {
+        return teamCounter.values().stream().reduce(0, Integer::sum);
+    }
+
+    private void extractPercentageForTeam(String team, int totalNumberOfTeams) {
+        int numberOfApparitions = teamCounter.get(team);
+        double percentage = getChancesToFinishAtThisPosition(numberOfApparitions, totalNumberOfTeams);
         map.put(team, percentage);
-    }
-
-    private int countApparitionsForTeam(String searchedTeam) {
-        int numberOfApparitions = 0;
-        for(String team: teams) {
-            if(team.equals(searchedTeam)) numberOfApparitions += 1;
-        }
-        return numberOfApparitions;
     }
 
     private double getChancesToFinishAtThisPosition(int numberOfApparition, int totalNbOfTeams) {

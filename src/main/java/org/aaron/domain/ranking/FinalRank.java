@@ -1,5 +1,7 @@
 package org.aaron.domain.ranking;
 
+import org.aaron.domain.team.Team;
+
 import java.util.*;
 
 public class FinalRank {
@@ -17,25 +19,37 @@ public class FinalRank {
 
     public void compute() {
         Set<String> set = new HashSet<>(teams);
-
-        int totalNbOfTeams = teams.size();
-        for(String uniqueTeam: set) {
-            int counter = 0;
-            for(String team: teams) {
-                if(team.equals(uniqueTeam)) counter += 1;
-            }
-            double chanceToFinishAtThisPosition = (double) counter / totalNbOfTeams * 100;
-            double roundedValue = (double)Math.round(chanceToFinishAtThisPosition * 100d) / 100d;
-            map.put(uniqueTeam, roundedValue);
+        for(String team: set) {
+            extractPercentageForTeam(team);
         }
+    }
+
+    private void extractPercentageForTeam(String team) {
+        int numberOfTeams = teams.size();
+        int numberOfApparitions = countApparitionsForTeam(team);
+        double percentage = getChancesToFinishAtThisPosition(numberOfApparitions, numberOfTeams);
+        map.put(team, percentage);
+    }
+
+    private int countApparitionsForTeam(String searchedTeam) {
+        int numberOfApparitions = 0;
+        for(String team: teams) {
+            if(team.equals(searchedTeam)) numberOfApparitions += 1;
+        }
+        return numberOfApparitions;
+    }
+
+    private double getChancesToFinishAtThisPosition(int numberOfApparition, int totalNbOfTeams) {
+        double chanceToFinishAtThisPosition = (double) numberOfApparition / totalNbOfTeams * 100;
+        return  (double)Math.round(chanceToFinishAtThisPosition * 100d) / 100d;
     }
 
     @Override
     public String toString() {
-        String result = "| " + position + " |";
+        StringBuilder result = new StringBuilder("| " + position + " |");
         for(Map.Entry<String, Double> entry: map.entrySet()) {
-            result = result + " " + entry.getKey() + " " + entry.getValue() + " |";
+            result.append(" ").append(entry.getKey()).append(" ").append(entry.getValue()).append(" |");
         }
-        return result;
+        return result.toString();
     }
 }

@@ -1,6 +1,6 @@
 package org.aaron.domain.prevision;
 
-import org.aaron.domain.ranking.FinalRankingStatistics;
+import org.aaron.domain.ranking.EndRankingTournamentStatistics;
 import org.aaron.domain.ranking.Championship;
 import org.aaron.domain.match.Score;
 
@@ -49,7 +49,7 @@ public class Prevision {
         }
     }
 
-    private FinalRankingStatistics getAncestorFinalRankingStatistics() {
+    private EndRankingTournamentStatistics getAncestorFinalRankingStatistics() {
         if(Objects.isNull(parent)) return championship.getFinalRanking();
         return parent.getAncestorFinalRankingStatistics();
     }

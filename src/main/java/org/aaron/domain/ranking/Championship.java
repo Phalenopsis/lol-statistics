@@ -11,18 +11,18 @@ import java.util.*;
 public class Championship {
     Map<String, Team> teams = new HashMap<>();
     ArrayList<Match> matchList;
-    FinalRankingStatistics finalRankingStatistics;
+    EndRankingTournamentStatistics endRankingTournamentStatistics;
 
     public Championship(List<Team> teamList, ArrayList<Match> matchList) {
         setTeam(teamList);
         this.matchList = matchList;
-        this.finalRankingStatistics = new FinalRankingStatistics(teamList.size());
+        this.endRankingTournamentStatistics = new EndRankingTournamentStatistics(teamList.size());
     }
 
     public Championship(Championship championship) {
         teams = duplicate(championship.teams);
         matchList = duplicate(championship.matchList);
-        this.finalRankingStatistics = championship.finalRankingStatistics;
+        this.endRankingTournamentStatistics = championship.endRankingTournamentStatistics;
     }
 
     private Map<String, Team> duplicate(Map<String, Team> teamsMap) {
@@ -62,8 +62,8 @@ public class Championship {
         return teams.get(name);
     }
 
-    public FinalRankingStatistics getFinalRanking() {
-        return finalRankingStatistics;
+    public EndRankingTournamentStatistics getFinalRanking() {
+        return endRankingTournamentStatistics;
     }
 
     public ArrayList<Match> getMatchList() {
@@ -105,11 +105,11 @@ public class Championship {
     public void computeAllRemainingMatches() {
         System.out.println("KB: " + (double) (Runtime.getRuntime().totalMemory() - Runtime.getRuntime().freeMemory()) / 1024);
         Prevision prevision = new Prevision(this);
-        finalRankingStatistics.compute();
+        endRankingTournamentStatistics.compute();
         System.out.println("KB: " + (double) (Runtime.getRuntime().totalMemory() - Runtime.getRuntime().freeMemory()) / 1024);
     }
 
     public String giveResults() {
-        return finalRankingStatistics.getResults();
+        return endRankingTournamentStatistics.getResults();
     }
 }

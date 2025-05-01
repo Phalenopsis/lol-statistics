@@ -6,12 +6,12 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class FinalRankingStatistics {
-    private final Map<Integer, StatisticForGivenRank> statisticsForRanks = new HashMap<>();
+public class EndRankingTournamentStatistics {
+    private final Map<Integer, StatisticsForGivenRank> statisticsForRanks = new HashMap<>();
 
     private final int numberOfTeams;
 
-    public FinalRankingStatistics(int numberOfTeams) {
+    public EndRankingTournamentStatistics(int numberOfTeams) {
         this.numberOfTeams = numberOfTeams;
         initializeFinalMap();
     }
@@ -24,13 +24,13 @@ public class FinalRankingStatistics {
 
     private void initializeFinalMap() {
         for(int i = 1; i <= numberOfTeams; i++) {
-            statisticsForRanks.put(i, new StatisticForGivenRank(i));
+            statisticsForRanks.put(i, new StatisticsForGivenRank(i));
         }
     }
 
     public void compute() {
-        for(StatisticForGivenRank statisticForGivenRank : statisticsForRanks.values()) {
-            statisticForGivenRank.compute();
+        for(StatisticsForGivenRank statisticsForGivenRank : statisticsForRanks.values()) {
+            statisticsForGivenRank.computePercent();
         }
     }
 

@@ -2,48 +2,48 @@ package org.aaron.domain.ranking;
 
 import java.util.*;
 
-public class StatisticForGivenRank {
-    private final int position;
-    private final Map<String, Integer> numberOfTimeTeamsAppearAtThisPosition = new HashMap<>();
+public class StatisticsForGivenRank {
+    private final int rank;
+    private final Map<String, Integer> teamAllocationsAtThisRank = new HashMap<>();
     private final Map<String, Double> chancesToFinishAtThisPositionByTeam = new HashMap<>();
 
-    StatisticForGivenRank(int position) {
-        this.position = position;
+    StatisticsForGivenRank(int rank) {
+        this.rank = rank;
     }
 
     public void addTeam(String teamName) {
-        if(Objects.nonNull(numberOfTimeTeamsAppearAtThisPosition.get(teamName))) {
-            numberOfTimeTeamsAppearAtThisPosition.put(teamName, numberOfTimeTeamsAppearAtThisPosition.get(teamName) + 1);
+        if(Objects.nonNull(teamAllocationsAtThisRank.get(teamName))) {
+            teamAllocationsAtThisRank.put(teamName, teamAllocationsAtThisRank.get(teamName) + 1);
         } else {
-            numberOfTimeTeamsAppearAtThisPosition.put(teamName, 1);
+            teamAllocationsAtThisRank.put(teamName, 1);
         }
     }
 
-    public void compute() {
-        int numberOfTeams = getNumberOfTeamsApparitions();
-        for(String team: numberOfTimeTeamsAppearAtThisPosition.keySet()) {
-            extractPercentageForTeam(team, numberOfTeams);
+    public void computePercent() {
+        int teamAllocations = totalTeamAllocations();
+        for(String team: teamAllocationsAtThisRank.keySet()) {
+            extractPercentageFor(team, teamAllocations);
         }
     }
 
-    private int getNumberOfTeamsApparitions() {
-        return numberOfTimeTeamsAppearAtThisPosition.values().stream().reduce(0, Integer::sum);
+    private int totalTeamAllocations() {
+        return teamAllocationsAtThisRank.values().stream().reduce(0, Integer::sum);
     }
 
-    private void extractPercentageForTeam(String team, int totalNumberOfTeams) {
-        int numberOfApparitions = numberOfTimeTeamsAppearAtThisPosition.get(team);
-        double percentage = getChancesToFinishAtThisPosition(numberOfApparitions, totalNumberOfTeams);
+    private void extractPercentageFor(String team, int teamAllocations) {
+        int numberOfAllocations = teamAllocationsAtThisRank.get(team);
+        double percentage = getChancesToFinishAtThisPosition(numberOfAllocations, teamAllocations);
         chancesToFinishAtThisPositionByTeam.put(team, percentage);
     }
 
-    private double getChancesToFinishAtThisPosition(int numberOfApparition, int totalNbOfTeams) {
-        double chanceToFinishAtThisPosition = (double) numberOfApparition / totalNbOfTeams * 100;
+    private double getChancesToFinishAtThisPosition(int numberOfAllocations, int teamAllocations) {
+        double chanceToFinishAtThisPosition = (double) numberOfAllocations / teamAllocations * 100;
         return  (double)Math.round(chanceToFinishAtThisPosition * 100d) / 100d;
     }
 
     @Override
     public String toString() {
-        StringBuilder result = new StringBuilder("| " + position + " |");
+        StringBuilder result = new StringBuilder("| " + rank + " |");
         for(Map.Entry<String, Double> entry: chancesToFinishAtThisPositionByTeam.entrySet()) {
             result.append(" ").append(entry.getKey()).append(" ").append(entry.getValue()).append(" |");
         }

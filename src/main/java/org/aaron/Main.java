@@ -12,7 +12,63 @@ import java.util.List;
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 public class Main {
     public static void main(String[] args) {
-        String znt = "ZennIt";     //TIP Press <shortcut actionId="ShowIntentionActions"/> with your caret at the highlighted text
+        Championship championship = getBeneluxChampionship();
+
+        playWeek1(championship);
+
+        playWeek2(championship);
+
+        playWeek3(championship);
+
+        playWeek4(championship);
+
+        playWeek5(championship);
+
+        long start = System.currentTimeMillis();
+        championship.compute();
+        long finish = System.currentTimeMillis();
+        long timeElapsed = finish - start;
+        System.out.println("computed in : " + timeElapsed + " ms");
+        System.out.println(championship.giveResults());
+    }
+
+    private static void playWeek5(Championship championship) {
+        championship.playNextMatch(new Score(2, 0));
+        championship.playNextMatch(new Score(2, 1));
+        championship.playNextMatch(new Score(0, 2));
+        championship.playNextMatch(new Score(0, 2));
+    }
+
+    private static void playWeek4(Championship championship) {
+        championship.playNextMatch(new Score(2, 0));
+        championship.playNextMatch(new Score(1, 2));
+        championship.playNextMatch(new Score(1, 2));
+        championship.playNextMatch(new Score(2, 0));
+    }
+
+    private static void playWeek3(Championship championship) {
+        championship.playNextMatch(new Score(2, 1));
+        championship.playNextMatch(new Score(2, 1));
+        championship.playNextMatch(new Score(0, 2));
+        championship.playNextMatch(new Score(2, 0));
+    }
+
+    private static void playWeek2(Championship championship) {
+        championship.playNextMatch(new Score(2, 1));
+        championship.playNextMatch(new Score(1, 2));
+        championship.playNextMatch(new Score(2, 1));
+        championship.playNextMatch(new Score(1, 2));
+    }
+
+    private static void playWeek1(Championship championship) {
+        championship.playNextMatch(new Score(2, 1));
+        championship.playNextMatch(new Score(1, 2));
+        championship.playNextMatch(new Score(2, 0));
+        championship.playNextMatch(new Score(2, 0));
+    }
+
+    private static Championship getBeneluxChampionship() {
+        String znt = "ZennIt";
         String mcon = "mCon esports";
         String snsh = "Senshi eports";
         String aoma = "A One Man Army";
@@ -22,7 +78,7 @@ public class Main {
         String ara = "Aurora";
 
 
-        Team zntTeam = new Team("ZennIt");     //TIP Press <shortcut actionId="ShowIntentionActions"/> with your caret at the highlighted text
+        Team zntTeam = new Team("ZennIt");
         Team mconTeam = new Team("mCon esports");
         Team snshTeam = new Team("Senshi eports");
         Team aomaTeam = new Team("A One Man Army");
@@ -82,44 +138,6 @@ public class Main {
         matchList.addAll(matchList3);
         matchList.addAll(matchList4);
 
-        Championship championship = new Championship(teams, matchList);
-
-        championship.playNextMatch(new Score(2, 1));
-        championship.playNextMatch(new Score(1, 2));
-        championship.playNextMatch(new Score(2, 0));
-        championship.playNextMatch(new Score(2, 0));
-
-        championship.playNextMatch(new Score(2, 1));
-        championship.playNextMatch(new Score(1, 2));
-        championship.playNextMatch(new Score(2, 1));
-        championship.playNextMatch(new Score(1, 2));
-
-        championship.playNextMatch(new Score(2, 1));
-        championship.playNextMatch(new Score(2, 1));
-        championship.playNextMatch(new Score(0, 2));
-        championship.playNextMatch(new Score(2, 0));
-
-        championship.playNextMatch(new Score(2, 0));
-        championship.playNextMatch(new Score(1, 2));
-        championship.playNextMatch(new Score(1, 2));
-        championship.playNextMatch(new Score(2, 0));
-
-        championship.playNextMatch(new Score(2, 0));
-        championship.playNextMatch(new Score(2, 1));
-        championship.playNextMatch(new Score(0, 2));
-        championship.playNextMatch(new Score(0, 2));
-
-        /*
-        List<PlacedTeam> list = ranking.getPlacedTeams();
-        for(PlacedTeam team: list) {
-            System.out.println(team.getName() + " " + team.getSeries() + " " + team.getGames());
-        }
-         */
-        long start = System.currentTimeMillis();
-        championship.compute();
-        long finish = System.currentTimeMillis();
-        long timeElapsed = finish - start;
-        System.out.println("computed in : " + timeElapsed + " ms");
-        System.out.println(championship.giveResults());
+        return new Championship(teams, matchList);
     }
 }

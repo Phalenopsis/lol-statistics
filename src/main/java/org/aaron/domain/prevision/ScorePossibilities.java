@@ -2,6 +2,8 @@ package org.aaron.domain.prevision;
 
 import org.aaron.domain.match.Score;
 
+import java.util.Random;
+
 public enum ScorePossibilities {
     VICTORY_TWO_ZERO(new Score(2, 0)),
     VICTORY_TWO_ONE(new Score(2, 1)),
@@ -16,5 +18,11 @@ public enum ScorePossibilities {
 
     public Score getScore() {
         return score;
+    }
+
+    public static Score getRandomPossibilities() {
+        Random random = new Random();
+        int randomNumber = random.nextInt(ScorePossibilities.values().length);
+        return values()[randomNumber].score;
     }
 }

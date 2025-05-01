@@ -8,11 +8,6 @@ import java.util.List;
 import java.util.Objects;
 
 public class Prevision {
-    private static final List<Score> POSSIBLE_SCORES = List.of(
-            new Score(2, 0),
-            new Score(2, 1),
-            new Score(1, 2),
-            new Score(0, 2));
 
     private static boolean isDone = false;
 
@@ -37,8 +32,8 @@ public class Prevision {
 
     private void processNextPrevision() {
         if(!(Objects.isNull(championship.getMatchList())) && !championship.getMatchList().isEmpty()) {
-            for(Score possibleScore: POSSIBLE_SCORES) {
-                Prevision child = new Prevision(championship, possibleScore , this);
+            for(ScorePossibilities scorePossibility: ScorePossibilities.values()) {
+                Prevision child = new Prevision(championship, scorePossibility.getScore() , this);
             }
         } else {
             if(!isDone) {

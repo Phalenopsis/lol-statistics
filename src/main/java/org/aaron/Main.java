@@ -25,7 +25,7 @@ public class Main {
         playWeek5(championship);
 
         long start = System.currentTimeMillis();
-        championship.compute();
+        championship.computeAllRemainingMatches();
         long finish = System.currentTimeMillis();
         long timeElapsed = finish - start;
         System.out.println("computed in : " + timeElapsed + " ms");
@@ -78,14 +78,14 @@ public class Main {
         String ara = "Aurora";
 
 
-        Team zntTeam = new Team("ZennIt");
-        Team mconTeam = new Team("mCon esports");
-        Team snshTeam = new Team("Senshi eports");
-        Team aomaTeam = new Team("A One Man Army");
-        Team mythTeam = new Team("Myth Esport");
-        Team ouatTeam = new Team("Once Upon A Team");
-        Team jmggTeam = new Team("Jörmungang");
-        Team araTeam = new Team("Aurora");
+        Team zntTeam = new Team(znt);
+        Team mconTeam = new Team(mcon);
+        Team snshTeam = new Team(snsh);
+        Team aomaTeam = new Team(aoma);
+        Team mythTeam = new Team(myth);
+        Team ouatTeam = new Team(ouat);
+        Team jmggTeam = new Team(jmgg);
+        Team araTeam = new Team(ara);
 
         List<Team> teams = List.of(zntTeam, mconTeam, snshTeam, aomaTeam, mythTeam, ouatTeam, jmggTeam, araTeam);
 

@@ -26,7 +26,7 @@ public class FinalTest {
 
         championship = new Championship(teamList, matchList);
 
-        championship.compute();
+        championship.computeAllRemainingMatches();
         String result = championship.giveResults();
 
         String expected = "| 1 | mCon esports 50.0 | Senshi eports 50.0 |\n" +
@@ -66,7 +66,7 @@ public class FinalTest {
             // ouat     1-1     3-3
             // arse     0-2     1-4
 
-            championship.compute();
+            championship.computeAllRemainingMatches();
             String result = championship.giveResults();
 
             String expected = "| 1 | Once upon a time 18.75 | mCon esports 56.25 | Senshi eports 25.0 |\n" +

@@ -6,12 +6,12 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class FinalRanking {
+public class FinalRankingStatistics {
     private final Map<Integer, StatisticForGivenRank> statisticsForRanks = new HashMap<>();
 
     private final int numberOfTeams;
 
-    public FinalRanking(int numberOfTeams) {
+    public FinalRankingStatistics(int numberOfTeams) {
         this.numberOfTeams = numberOfTeams;
         initializeFinalMap();
     }

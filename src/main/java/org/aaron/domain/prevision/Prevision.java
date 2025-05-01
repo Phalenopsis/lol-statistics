@@ -1,14 +1,13 @@
 package org.aaron.domain.prevision;
 
-import org.aaron.domain.ranking.FinalRanking;
+import org.aaron.domain.ranking.FinalRankingStatistics;
 import org.aaron.domain.ranking.Championship;
 import org.aaron.domain.match.Score;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-public class Node {
+public class Prevision {
     private static final List<Score> POSSIBLE_SCORES = List.of(
             new Score(2, 0),
             new Score(2, 1),
@@ -17,41 +16,41 @@ public class Node {
 
     private static boolean isDone = false;
 
-    Node parent;
+    Prevision parent;
     int depth;
 
     Championship championship;
 
-    public Node(Championship pChampionship) {
+    public Prevision(Championship pChampionship) {
         championship = pChampionship;
-        processChildren();
+        processNextPrevision();
         depth = 0;
     }
 
-    public Node(Championship championship, Score score, Node node) {
-        depth = node.depth + 1;
+    public Prevision(Championship championship, Score score, Prevision prevision) {
+        depth = prevision.depth + 1;
         this.championship = new Championship(championship);
-        parent = node;
+        parent = prevision;
         this.championship.playNextMatch(score);
-        processChildren();
+        processNextPrevision();
     }
 
-    private void processChildren() {
+    private void processNextPrevision() {
         if(!(Objects.isNull(championship.getMatchList())) && !championship.getMatchList().isEmpty()) {
             for(Score possibleScore: POSSIBLE_SCORES) {
-                Node child = new Node(championship, possibleScore , this);
+                Prevision child = new Prevision(championship, possibleScore , this);
             }
         } else {
             if(!isDone) {
-                System.out.println("Deepth : " + depth);
+                System.out.println("Depth : " + depth);
                 isDone = true;
             }
-            getAncestorFinalRanking().addList(championship.getPlacedTeams());
+            getAncestorFinalRankingStatistics().addList(championship.getPlacedTeams());
         }
     }
 
-    private FinalRanking getAncestorFinalRanking() {
+    private FinalRankingStatistics getAncestorFinalRankingStatistics() {
         if(Objects.isNull(parent)) return championship.getFinalRanking();
-        return parent.getAncestorFinalRanking();
+        return parent.getAncestorFinalRankingStatistics();
     }
 }

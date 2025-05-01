@@ -59,7 +59,7 @@ public class Team implements Comparable<Team>{
 
     private void prepareMatchResults() {
         for (MatchResult matchResult: matchResultList) {
-            matchResultMap.put(matchResult.getOppositeTeam(), matchResult.getResult());
+            matchResultMap.put(matchResult.oppositeTeam(), matchResult.result());
         }
     }
 

@@ -2,7 +2,7 @@ package org.aaron.domain.ranking;
 
 import org.aaron.domain.match.Match;
 import org.aaron.domain.match.Score;
-import org.aaron.domain.prevision.Node;
+import org.aaron.domain.prevision.Prevision;
 import org.aaron.domain.team.RankedTeam;
 import org.aaron.domain.team.Team;
 
@@ -11,18 +11,18 @@ import java.util.*;
 public class Championship {
     Map<String, Team> teams = new HashMap<>();
     ArrayList<Match> matchList;
-    FinalRanking finalRanking;
+    FinalRankingStatistics finalRankingStatistics;
 
     public Championship(List<Team> teamList, ArrayList<Match> matchList) {
         setTeam(teamList);
         this.matchList = matchList;
-        this.finalRanking = new FinalRanking(teamList.size());
+        this.finalRankingStatistics = new FinalRankingStatistics(teamList.size());
     }
 
     public Championship(Championship championship) {
         teams = duplicate(championship.teams);
         matchList = duplicate(championship.matchList);
-        this.finalRanking = championship.finalRanking;
+        this.finalRankingStatistics = championship.finalRankingStatistics;
     }
 
     private Map<String, Team> duplicate(Map<String, Team> teamsMap) {
@@ -62,8 +62,8 @@ public class Championship {
         return teams.get(name);
     }
 
-    public FinalRanking getFinalRanking() {
-        return finalRanking;
+    public FinalRankingStatistics getFinalRanking() {
+        return finalRankingStatistics;
     }
 
     public ArrayList<Match> getMatchList() {
@@ -102,14 +102,14 @@ public class Championship {
         return teamList;
     }
 
-    public void compute() {
+    public void computeAllRemainingMatches() {
         System.out.println("KB: " + (double) (Runtime.getRuntime().totalMemory() - Runtime.getRuntime().freeMemory()) / 1024);
-        Node node = new Node(this);
-        finalRanking.compute();
+        Prevision prevision = new Prevision(this);
+        finalRankingStatistics.compute();
         System.out.println("KB: " + (double) (Runtime.getRuntime().totalMemory() - Runtime.getRuntime().freeMemory()) / 1024);
     }
 
     public String giveResults() {
-        return finalRanking.getResults();
+        return finalRankingStatistics.getResults();
     }
 }

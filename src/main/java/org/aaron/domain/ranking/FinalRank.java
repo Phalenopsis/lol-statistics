@@ -4,36 +4,36 @@ import java.util.*;
 
 public class FinalRank {
     private final int position;
-    private final Map<String, Integer> teamCounter = new HashMap<>();
-    private final Map<String, Double> map = new HashMap<>();
+    private final Map<String, Integer> numberOfTimeTeamsAppearAtThisPosition = new HashMap<>();
+    private final Map<String, Double> chancesToFinishAtThisPositionByTeam = new HashMap<>();
 
     FinalRank(int position) {
         this.position = position;
     }
 
     public void addTeam(String teamName) {
-        if(Objects.nonNull(teamCounter.get(teamName))) {
-            teamCounter.put(teamName, teamCounter.get(teamName) + 1);
+        if(Objects.nonNull(numberOfTimeTeamsAppearAtThisPosition.get(teamName))) {
+            numberOfTimeTeamsAppearAtThisPosition.put(teamName, numberOfTimeTeamsAppearAtThisPosition.get(teamName) + 1);
         } else {
-            teamCounter.put(teamName, 1);
+            numberOfTimeTeamsAppearAtThisPosition.put(teamName, 1);
         }
     }
 
     public void compute() {
         int numberOfTeams = getNumberOfTeamsApparitions();
-        for(String team: teamCounter.keySet()) {
+        for(String team: numberOfTimeTeamsAppearAtThisPosition.keySet()) {
             extractPercentageForTeam(team, numberOfTeams);
         }
     }
 
     private int getNumberOfTeamsApparitions() {
-        return teamCounter.values().stream().reduce(0, Integer::sum);
+        return numberOfTimeTeamsAppearAtThisPosition.values().stream().reduce(0, Integer::sum);
     }
 
     private void extractPercentageForTeam(String team, int totalNumberOfTeams) {
-        int numberOfApparitions = teamCounter.get(team);
+        int numberOfApparitions = numberOfTimeTeamsAppearAtThisPosition.get(team);
         double percentage = getChancesToFinishAtThisPosition(numberOfApparitions, totalNumberOfTeams);
-        map.put(team, percentage);
+        chancesToFinishAtThisPositionByTeam.put(team, percentage);
     }
 
     private double getChancesToFinishAtThisPosition(int numberOfApparition, int totalNbOfTeams) {
@@ -44,7 +44,7 @@ public class FinalRank {
     @Override
     public String toString() {
         StringBuilder result = new StringBuilder("| " + position + " |");
-        for(Map.Entry<String, Double> entry: map.entrySet()) {
+        for(Map.Entry<String, Double> entry: chancesToFinishAtThisPositionByTeam.entrySet()) {
             result.append(" ").append(entry.getKey()).append(" ").append(entry.getValue()).append(" |");
         }
         return result.toString();

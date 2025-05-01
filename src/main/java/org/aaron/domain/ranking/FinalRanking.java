@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Map;
 
 public class FinalRanking {
-    private final Map<Integer, FinalRank> finalMap = new HashMap<>();
+    private final Map<Integer, StatisticForGivenRank> statisticsForRanks = new HashMap<>();
 
     private final int numberOfTeams;
 
@@ -18,26 +18,26 @@ public class FinalRanking {
 
     public void addList(List<RankedTeam> list) {
         for(RankedTeam team: list) {
-            finalMap.get(team.getRank()).addTeam(team.getName());
+            statisticsForRanks.get(team.getRank()).addTeam(team.getName());
         }
     }
 
     private void initializeFinalMap() {
         for(int i = 1; i <= numberOfTeams; i++) {
-            finalMap.put(i, new FinalRank(i));
+            statisticsForRanks.put(i, new StatisticForGivenRank(i));
         }
     }
 
     public void compute() {
-        for(FinalRank finalRank: finalMap.values()) {
-            finalRank.compute();
+        for(StatisticForGivenRank statisticForGivenRank : statisticsForRanks.values()) {
+            statisticForGivenRank.compute();
         }
     }
 
     public String getResults() {
         String result = "";
         for(int i = 1; i <= numberOfTeams; i++) {
-            result = result + finalMap.get(i) + "\n";
+            result = result + statisticsForRanks.get(i) + "\n";
         }
         return result;
     }

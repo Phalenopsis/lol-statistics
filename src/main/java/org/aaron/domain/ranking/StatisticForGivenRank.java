@@ -2,12 +2,12 @@ package org.aaron.domain.ranking;
 
 import java.util.*;
 
-public class FinalRank {
+public class StatisticForGivenRank {
     private final int position;
     private final Map<String, Integer> numberOfTimeTeamsAppearAtThisPosition = new HashMap<>();
     private final Map<String, Double> chancesToFinishAtThisPositionByTeam = new HashMap<>();
 
-    FinalRank(int position) {
+    StatisticForGivenRank(int position) {
         this.position = position;
     }
 

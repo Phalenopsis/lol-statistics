@@ -2,6 +2,7 @@ package org.aaron.domain.ranking;
 
 import org.aaron.domain.team.RankedTeam;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -40,5 +41,9 @@ public class EndRankingTournamentStatistics {
             result = result + statisticsForRanks.get(i) + "\n";
         }
         return result;
+    }
+
+    public Map<Integer, StatisticsForGivenRank> getStatisticsForRanks() {
+        return statisticsForRanks;
     }
 }

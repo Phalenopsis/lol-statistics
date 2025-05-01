@@ -49,4 +49,8 @@ public class StatisticsForGivenRank {
         }
         return result.toString();
     }
+
+    public double getChances(String team) {
+        return chancesToFinishAtThisPositionByTeam.get(team);
+    }
 }

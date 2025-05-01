@@ -2,6 +2,7 @@ package org.aaron.domain.ranking;
 
 import org.aaron.domain.match.Match;
 import org.aaron.domain.match.Score;
+import org.aaron.domain.prevision.MonteCarlo;
 import org.aaron.domain.prevision.Prevision;
 import org.aaron.domain.team.RankedTeam;
 import org.aaron.domain.team.Team;
@@ -109,7 +110,16 @@ public class Championship {
         System.out.println("KB: " + (double) (Runtime.getRuntime().totalMemory() - Runtime.getRuntime().freeMemory()) / 1024);
     }
 
+    public void computeMonteCarlo() {
+        MonteCarlo monteCarlo = new MonteCarlo(this);
+        endRankingTournamentStatistics.compute();
+    }
+
     public String giveResults() {
         return endRankingTournamentStatistics.getResults();
+    }
+
+    public Map<Integer, StatisticsForGivenRank> getStatisticsForRanks() {
+        return endRankingTournamentStatistics.getStatisticsForRanks();
     }
 }

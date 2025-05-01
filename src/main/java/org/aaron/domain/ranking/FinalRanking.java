@@ -2,13 +2,11 @@ package org.aaron.domain.ranking;
 
 import org.aaron.domain.team.RankedTeam;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 public class FinalRanking {
-    private final ArrayList<List<RankedTeam>> finalList = new ArrayList<>();
     private final Map<Integer, FinalRank> finalMap = new HashMap<>();
 
     private final int numberOfTeams;
@@ -19,7 +17,9 @@ public class FinalRanking {
     }
 
     public void addList(List<RankedTeam> list) {
-        finalList.add(list);
+        for(RankedTeam team: list) {
+            finalMap.get(team.getRank()).addTeam(team.getName());
+        }
     }
 
     private void initializeFinalMap() {
@@ -29,11 +29,6 @@ public class FinalRanking {
     }
 
     public void compute() {
-        for(List<RankedTeam> list: finalList) {
-            for(RankedTeam team: list) {
-                finalMap.get(team.getRank()).addTeam(team.getName());
-            }
-        }
         for(FinalRank finalRank: finalMap.values()) {
             finalRank.compute();
         }

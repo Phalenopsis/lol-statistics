@@ -26,7 +26,7 @@ public class Team implements Comparable<Team>{
         this.games = games;
         this.name = name;
         this.matchResultList = matchResultList;
-        //prepareMatchResults();
+        prepareMatchResults();
     }
 
     public Team(Team team) {
@@ -34,7 +34,7 @@ public class Team implements Comparable<Team>{
         games = new Games(team.getGames());
         series = new Series(team.getSeries());
         matchResultList = List.copyOf(team.matchResultList);
-        //prepareMatchResults();
+        prepareMatchResults();
     }
 
     public String getName() {

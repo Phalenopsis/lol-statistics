@@ -5,10 +5,10 @@ import org.aaron.domain.match.Score;
 import org.aaron.domain.ranking.Championship;
 import org.aaron.domain.ranking.StatisticsForGivenRank;
 import org.aaron.domain.team.Team;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
+import static org.assertj.core.api.Assertions.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -45,11 +45,11 @@ class MonteCarloTest {
         double chancesForMconToFinish2 = rank2.getChances(mcon);
         double chancesForSnshToFinish2 = rank2.getChances(snsh);
 
-        Assertions.assertTrue(chancesForMconToFinish1 >= 49 && chancesForMconToFinish1 <= 51);
-        Assertions.assertTrue(chancesForSnshToFinish1 >= 49 && chancesForSnshToFinish1 <= 51);
-
-        Assertions.assertTrue(chancesForMconToFinish2 >= 49 && chancesForMconToFinish2 <= 51);
-        Assertions.assertTrue(chancesForSnshToFinish2 >= 49 && chancesForSnshToFinish2 <= 51);
+        assertThat(chancesForMconToFinish1).isCloseTo(50, within(1d));
+        assertThat(chancesForMconToFinish2).isCloseTo(50, within(1d));
+        
+        assertThat(chancesForSnshToFinish1).isCloseTo(50, within(1d));
+        assertThat(chancesForSnshToFinish2).isCloseTo(50, within(1d));
     }
 
     @Nested
@@ -69,54 +69,14 @@ class MonteCarloTest {
 
             List<Team> teams = List.of(zntTeam, mconTeam, snshTeam, aomaTeam, mythTeam, ouatTeam, jmggTeam, araTeam);
 
-            Match matchToDoW1_1 = new Match(myth, snsh);
-            Match matchToDoW1_2 = new Match(ouat, mcon);
-            Match matchToDoW1_3 = new Match(aoma, jmgg);
-            Match matchToDoW1_4 = new Match(znt, ara);
-
-            Match matchToDoW2_1 = new Match(znt, mcon);
-            Match matchToDoW2_2 = new Match(aoma,snsh);
-            Match matchToDoW2_3 = new Match(ouat, ara);
-            Match matchToDoW2_4 = new Match(myth, jmgg);
-
-            List<Match> matchList1 = List.of(matchToDoW1_1, matchToDoW1_2, matchToDoW1_3, matchToDoW1_4, matchToDoW2_1, matchToDoW2_2, matchToDoW2_3, matchToDoW2_4);
-
-            Match matchToDoW3_1 = new Match(myth, ara);
-            Match matchToDoW3_2 = new Match(ouat, jmgg);
-            Match matchToDoW3_3 = new Match(aoma, mcon);
-            Match matchToDoW3_4 = new Match(znt, snsh);
-
-            Match matchToDoW4_1 = new Match(znt, jmgg);
-            Match matchToDoW4_2 = new Match(myth, mcon);
-            Match matchToDoW4_3 = new Match(ouat, snsh);
-            Match matchToDoW4_4 = new Match(aoma, ara);
-
-            List<Match> matchList2 = List.of(matchToDoW3_1, matchToDoW3_2, matchToDoW3_3, matchToDoW3_4, matchToDoW4_1, matchToDoW4_2, matchToDoW4_3, matchToDoW4_4);
-
-            Match matchToDoW5_1 = new Match(mcon, jmgg);
-            Match matchToDoW5_2 = new Match(snsh, ara);
-            Match matchToDoW5_3 = new Match(znt, aoma);
-            Match matchToDoW5_4 = new Match(ouat, myth);
-
-            List<Match> matchList3 = List.of(matchToDoW5_1, matchToDoW5_2, matchToDoW5_3, matchToDoW5_4);
-
-            Match matchToDoW6_1 = new Match(mcon, ara);
-            Match matchToDoW6_2 = new Match(znt, ouat);
-            Match matchToDoW6_3 = new Match(snsh, jmgg);
-            Match matchToDoW6_4 = new Match(aoma, myth);
-
-            Match matchToDoW7_1 = new Match(ouat, aoma);
-            Match matchToDoW7_2 = new Match(ara, jmgg);
-            Match matchToDoW7_3 = new Match(znt, myth);
-            Match matchToDoW7_4 = new Match(mcon, snsh);
-
-
-            List<Match> matchList4 = List.of(matchToDoW6_1, matchToDoW6_2, matchToDoW6_3, matchToDoW6_4, matchToDoW7_1, matchToDoW7_2, matchToDoW7_3, matchToDoW7_4);
-
-            ArrayList<Match> matchList = new ArrayList<>(matchList1);
-            matchList.addAll(matchList2);
-            matchList.addAll(matchList3);
-            matchList.addAll(matchList4);
+            ArrayList<Match> matchList = new ArrayList<>();
+            matchList.addAll(prepareWeek1());
+            matchList.addAll(prepareWeek2());
+            matchList.addAll(prepareWeek3());
+            matchList.addAll(prepareWeek4());
+            matchList.addAll(prepareWeek5());
+            matchList.addAll(prepareWeek6());
+            matchList.addAll(prepareWeek7());
 
             championship = new Championship(teams, matchList);
         }
@@ -134,14 +94,11 @@ class MonteCarloTest {
             double chancesForSnshToFinish2 = rank2.getChances(snsh);
 
             double chances = 12.5;
-            double lowLimit = chances - 1;
-            double highLimit = chances + 1;
 
-            Assertions.assertTrue(chancesForMconToFinish1 >= lowLimit && chancesForMconToFinish1 <= highLimit);
-            Assertions.assertTrue(chancesForSnshToFinish1 >= lowLimit && chancesForSnshToFinish1 <= highLimit);
-
-            Assertions.assertTrue(chancesForMconToFinish2 >= lowLimit && chancesForMconToFinish2 <= highLimit);
-            Assertions.assertTrue(chancesForSnshToFinish2 >= lowLimit && chancesForSnshToFinish2 <= highLimit);
+            assertThat(chancesForMconToFinish1).isCloseTo(chances, within(1d));
+            assertThat(chancesForSnshToFinish1).isCloseTo(chances, within(1d));
+            assertThat(chancesForMconToFinish2).isCloseTo(chances, within(1d));
+            assertThat(chancesForSnshToFinish2).isCloseTo(chances, within(1d));
 
         }
 
@@ -164,56 +121,108 @@ class MonteCarloTest {
             double chancesForJmggToFinish5 = rank5.getChances(jmgg);
 
             double chancesZnt = 34.74;
-            double lowLimitZnt = chancesZnt - 1;
-            double highLimitZnt = chancesZnt + 1;
-
             double chancesMyth = 10.73;
-            double lowLimitMyth = chancesMyth - 1;
-            double highLimitMyth = chancesMyth + 1;
-
             double chancesOuat = 18.31;
-            double lowLimitOuat = chancesOuat - 1;
-            double highLimitOuat = chancesOuat + 1;
-
             double chancesJmgg = 1.56;
-            double lowLimitJmgg = chancesJmgg - 1;
-            double highLimitJmgg = chancesJmgg + 1;
 
-            Assertions.assertTrue(chancesForZntToFinish1 >= lowLimitZnt && chancesForZntToFinish1 <= highLimitZnt);
-            Assertions.assertTrue(chancesForMythToFinish1 >= lowLimitMyth && chancesForMythToFinish1 <= highLimitMyth);
-            Assertions.assertTrue(chancesForOuatToFinish5 >= lowLimitOuat && chancesForOuatToFinish5 <= highLimitOuat);
-            Assertions.assertTrue(chancesForJmggToFinish5 >= lowLimitJmgg && chancesForJmggToFinish5 <= highLimitJmgg);
+            assertThat(chancesForZntToFinish1).isCloseTo(chancesZnt, within(1d));
+            assertThat(chancesForMythToFinish1).isCloseTo(chancesMyth, within(1d));
+            assertThat(chancesForOuatToFinish5).isCloseTo(chancesOuat, within(1d));
+            assertThat(chancesForJmggToFinish5).isCloseTo(chancesJmgg, within(1d));
+        }
+        
+        private List<Match> prepareWeek1() {
+            Match matchToDoW1_1 = new Match(myth, snsh);
+            Match matchToDoW1_2 = new Match(ouat, mcon);
+            Match matchToDoW1_3 = new Match(aoma, jmgg);
+            Match matchToDoW1_4 = new Match(znt, ara);
+
+            return List.of(matchToDoW1_1, matchToDoW1_2, matchToDoW1_3, matchToDoW1_4);
+        }
+        
+        private List<Match> prepareWeek2() {
+            Match matchToDoW2_1 = new Match(znt, mcon);
+            Match matchToDoW2_2 = new Match(aoma,snsh);
+            Match matchToDoW2_3 = new Match(ouat, ara);
+            Match matchToDoW2_4 = new Match(myth, jmgg);
+
+            return List.of(matchToDoW2_1, matchToDoW2_2, matchToDoW2_3, matchToDoW2_4);
+        }
+        
+        private List<Match> prepareWeek3() {
+            Match matchToDoW3_1 = new Match(myth, ara);
+            Match matchToDoW3_2 = new Match(ouat, jmgg);
+            Match matchToDoW3_3 = new Match(aoma, mcon);
+            Match matchToDoW3_4 = new Match(znt, snsh);
+
+            return List.of(matchToDoW3_1, matchToDoW3_2, matchToDoW3_3, matchToDoW3_4);
         }
 
-        private static void playWeek5(Championship championship) {
+        private List<Match> prepareWeek4() {
+            Match matchToDoW4_1 = new Match(znt, jmgg);
+            Match matchToDoW4_2 = new Match(myth, mcon);
+            Match matchToDoW4_3 = new Match(ouat, snsh);
+            Match matchToDoW4_4 = new Match(aoma, ara);
+
+            return List.of(matchToDoW4_1, matchToDoW4_2, matchToDoW4_3, matchToDoW4_4);
+        }
+
+        private List<Match> prepareWeek5() {
+            Match matchToDoW5_1 = new Match(mcon, jmgg);
+            Match matchToDoW5_2 = new Match(snsh, ara);
+            Match matchToDoW5_3 = new Match(znt, aoma);
+            Match matchToDoW5_4 = new Match(ouat, myth);
+
+            return List.of(matchToDoW5_1, matchToDoW5_2, matchToDoW5_3, matchToDoW5_4);
+        }
+
+        private List<Match> prepareWeek6() {
+            Match matchToDoW6_1 = new Match(mcon, ara);
+            Match matchToDoW6_2 = new Match(znt, ouat);
+            Match matchToDoW6_3 = new Match(snsh, jmgg);
+            Match matchToDoW6_4 = new Match(aoma, myth);
+
+            return List.of(matchToDoW6_1, matchToDoW6_2, matchToDoW6_3, matchToDoW6_4);
+        }
+
+        private List<Match> prepareWeek7() {
+            Match matchToDoW7_1 = new Match(ouat, aoma);
+            Match matchToDoW7_2 = new Match(ara, jmgg);
+            Match matchToDoW7_3 = new Match(znt, myth);
+            Match matchToDoW7_4 = new Match(mcon, snsh);
+
+            return List.of(matchToDoW7_1, matchToDoW7_2, matchToDoW7_3, matchToDoW7_4);
+        }
+
+        private void playWeek5(Championship championship) {
             championship.playNextMatch(new Score(2, 0));
             championship.playNextMatch(new Score(2, 1));
             championship.playNextMatch(new Score(0, 2));
             championship.playNextMatch(new Score(0, 2));
         }
 
-        private static void playWeek4(Championship championship) {
+        private void playWeek4(Championship championship) {
             championship.playNextMatch(new Score(2, 0));
             championship.playNextMatch(new Score(1, 2));
             championship.playNextMatch(new Score(1, 2));
             championship.playNextMatch(new Score(2, 0));
         }
 
-        private static void playWeek3(Championship championship) {
+        private void playWeek3(Championship championship) {
             championship.playNextMatch(new Score(2, 1));
             championship.playNextMatch(new Score(2, 1));
             championship.playNextMatch(new Score(0, 2));
             championship.playNextMatch(new Score(2, 0));
         }
 
-        private static void playWeek2(Championship championship) {
+        private void playWeek2(Championship championship) {
             championship.playNextMatch(new Score(2, 1));
             championship.playNextMatch(new Score(1, 2));
             championship.playNextMatch(new Score(2, 1));
             championship.playNextMatch(new Score(1, 2));
         }
 
-        private static void playWeek1(Championship championship) {
+        private void playWeek1(Championship championship) {
             championship.playNextMatch(new Score(2, 1));
             championship.playNextMatch(new Score(1, 2));
             championship.playNextMatch(new Score(2, 0));

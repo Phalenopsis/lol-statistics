@@ -24,12 +24,21 @@ public class Main {
 
         playWeek5(championship);
 
+        playWeek6(championship);
+
         long start = System.currentTimeMillis();
         championship.computeAllRemainingMatches();
         long finish = System.currentTimeMillis();
         long timeElapsed = finish - start;
         System.out.println("computed in : " + timeElapsed + " ms");
         System.out.println(championship.giveResults());
+    }
+
+    private static void playWeek6(Championship championship) {
+        championship.playNextMatch(new Score(2, 0));
+        championship.playNextMatch(new Score(2, 2));
+        championship.playNextMatch(new Score(2, 1));
+        championship.playNextMatch(new Score(2, 0));
     }
 
     private static void playWeek5(Championship championship) {

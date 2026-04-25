@@ -5,19 +5,29 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3905a234-b63a-4a55-b787-be724b4f40f5" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/aaron/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/aaron/Main.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Enum" />
+        <option value="JUnit5 Test Class" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 3
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 3
+}</component>
   <component name="ProjectId" id="2w8egPBqpROcPvgKdtyM1ZLz9Jf" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
@@ -26,12 +36,132 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "Application.Main.executor": "Run",
+    "JUnit.AbstractSeasonFromCopyTest.executor": "Run",
+    "JUnit.AbstractSeasonFromCopyTest.testCleanString.executor": "Run",
+    "JUnit.AbstractSeasonFromCopyTest.testCleanString_MultiLineString_ShouldDeleteBadCharacter.executor": "Run",
+    "JUnit.AbstractSeasonFromCopyTest.testCleanString_OneLineString_ShouldDeleteBadCharacter.executor": "Run",
+    "JUnit.AbstractSeasonFromCopyTest.transformCopiedStringToList.executor": "Run",
+    "JUnit.AbstractSeasonFromCopyTest.transformCopiedStringToList_playedWeek_ShouldTransformToList.executor": "Run",
+    "JUnit.All in aaron-classement.executor": "Run",
+    "JUnit.ChampionshipTest$testRankedTeamWith4TeamsAnd6Matches.verifyRankingIsOrdered.executor": "Run",
+    "JUnit.FinalTest$FinalTestWith4Teams.testFinalWith4TeamsAnd4MatchesPlayed.executor": "Run",
+    "JUnit.FinalTest.executor": "Run",
+    "JUnit.FinalTest.test.executor": "Run",
+    "JUnit.FinalTest.testFinal.executor": "Run",
+    "JUnit.MonteCarloTest$TestWith8Teams.executor": "Run",
+    "JUnit.MonteCarloTest$TestWith8Teams.test.executor": "Run",
+    "JUnit.MonteCarloTest$TestWith8Teams.testCompute_With8Teams_NoMatchPlayed.executor": "Run",
+    "JUnit.MonteCarloTest.executor": "Run",
+    "JUnit.MonteCarloTest.testCompute.executor": "Run",
+    "JUnit.MonteCarloTest.testCompute_With2Teams.executor": "Run",
+    "JUnit.MonteCarloTest.testCompute_With8Teams.executor": "Run",
+    "JUnit.SeasonFromCopyUtilsTest.testTransformCopiedScoreTable.executor": "Run",
+    "JUnit.org.aaron in aaron-classement.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "main",
+    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
+    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
+    "git-widget-placeholder": "refactor/improve-statistics",
     "kotlin-language-version-configured": "true",
     "onboarding.tips.debug.path": "C:/Users/nlero/Documents/projetsperso/aaron-classement/src/main/java/org/aaron/Main.java"
   }
 }]]></component>
+  <component name="RecentsManager">
+    <key name="CreateTestDialog.Recents.Supers">
+      <recent name="" />
+    </key>
+    <key name="CreateTestDialog.RecentsKey">
+      <recent name="org.aaron.domain.season" />
+      <recent name="org.aaron.domain.prevision" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Application.Main">
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="org.aaron.Main" />
+      <module name="aaron-classement" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="org.aaron.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="FinalTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="aaron-classement" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="org.aaron.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="org.aaron" />
+      <option name="MAIN_CLASS_NAME" value="org.aaron.FinalTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="SeasonFromCopyUtilsTest.testTransformCopiedScoreTable" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="aaron-classement" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="org.aaron.domain.season.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="org.aaron.domain.season" />
+      <option name="MAIN_CLASS_NAME" value="org.aaron.domain.season.SeasonFromCopyUtilsTest" />
+      <option name="METHOD_NAME" value="testTransformCopiedScoreTable" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="SeasonFromCopyUtilsTest.transformCopiedStringToList" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="aaron-classement" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="org.aaron.domain.season.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="org.aaron.domain.season" />
+      <option name="MAIN_CLASS_NAME" value="org.aaron.domain.season.SeasonFromCopyUtilsTest" />
+      <option name="METHOD_NAME" value="transformCopiedStringToList" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="SeasonFromCopyUtilsTest.transformCopiedStringToList_playedWeek_ShouldTransformToList" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="aaron-classement" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="org.aaron.domain.season.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="org.aaron.domain.season" />
+      <option name="MAIN_CLASS_NAME" value="org.aaron.domain.season.SeasonFromCopyUtilsTest" />
+      <option name="METHOD_NAME" value="transformCopiedStringToList_playedWeek_ShouldTransformToList" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.Main" />
+        <item itemvalue="JUnit.FinalTest" />
+        <item itemvalue="JUnit.SeasonFromCopyUtilsTest.testTransformCopiedScoreTable" />
+        <item itemvalue="JUnit.SeasonFromCopyUtilsTest.transformCopiedStringToList_playedWeek_ShouldTransformToList" />
+        <item itemvalue="JUnit.SeasonFromCopyUtilsTest.transformCopiedStringToList" />
+      </list>
+    </recent_temporary>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -48,10 +178,25 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/org/aaron/Main.java</url>
-          <line>13</line>
+          <line>17</line>
           <option name="timeStamp" value="1" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/test/java/org/aaron/domain/season/SeasonFromCopyUtilsTest.java</url>
+          <line>151</line>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/org/aaron/domain/season/SeasonInitializer.java</url>
+          <line>40</line>
+          <option name="timeStamp" value="4" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
+    <pin-to-top-manager>
+      <pinned-members>
+        <PinnedItemInfo parentTag="org.aaron.domain.team.Team" memberName="versusMatchResults" />
+      </pinned-members>
+    </pin-to-top-manager>
   </component>
 </project>

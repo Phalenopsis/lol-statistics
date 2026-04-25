@@ -2,7 +2,8 @@ package org.aaron.domain.ranking;
 
 import org.aaron.domain.match.Match;
 import org.aaron.domain.match.Score;
-import org.aaron.domain.prevision.Node;
+import org.aaron.domain.prevision.MonteCarlo;
+import org.aaron.domain.prevision.Prevision;
 import org.aaron.domain.team.RankedTeam;
 import org.aaron.domain.team.Team;
 
@@ -11,18 +12,18 @@ import java.util.*;
 public class Championship {
     Map<String, Team> teams = new HashMap<>();
     ArrayList<Match> matchList;
-    FinalRanking finalRanking;
+    EndRankingTournamentStatistics endRankingTournamentStatistics;
 
     public Championship(List<Team> teamList, ArrayList<Match> matchList) {
         setTeam(teamList);
         this.matchList = matchList;
-        this.finalRanking = new FinalRanking(teamList.size());
+        this.endRankingTournamentStatistics = new EndRankingTournamentStatistics(teamList.size());
     }
 
     public Championship(Championship championship) {
         teams = duplicate(championship.teams);
         matchList = duplicate(championship.matchList);
-        this.finalRanking = championship.finalRanking;
+        this.endRankingTournamentStatistics = championship.endRankingTournamentStatistics;
     }
 
     private Map<String, Team> duplicate(Map<String, Team> teamsMap) {
@@ -62,8 +63,8 @@ public class Championship {
         return teams.get(name);
     }
 
-    public FinalRanking getFinalRanking() {
-        return finalRanking;
+    public EndRankingTournamentStatistics getFinalRanking() {
+        return endRankingTournamentStatistics;
     }
 
     public ArrayList<Match> getMatchList() {
@@ -102,12 +103,23 @@ public class Championship {
         return teamList;
     }
 
-    public void compute() {
-        Node node = new Node(this);
-        finalRanking.compute();
+    public void computeAllRemainingMatches() {
+        System.out.println("KB: " + (double) (Runtime.getRuntime().totalMemory() - Runtime.getRuntime().freeMemory()) / 1024);
+        Prevision prevision = new Prevision(this);
+        endRankingTournamentStatistics.compute();
+        System.out.println("KB: " + (double) (Runtime.getRuntime().totalMemory() - Runtime.getRuntime().freeMemory()) / 1024);
+    }
+
+    public void computeMonteCarlo() {
+        MonteCarlo monteCarlo = new MonteCarlo(this);
+        endRankingTournamentStatistics.compute();
     }
 
     public String giveResults() {
-        return finalRanking.getResults();
+        return endRankingTournamentStatistics.getResults();
+    }
+
+    public Map<Integer, StatisticsForGivenRank> getStatisticsForRanks() {
+        return endRankingTournamentStatistics.getStatisticsForRanks();
     }
 }
